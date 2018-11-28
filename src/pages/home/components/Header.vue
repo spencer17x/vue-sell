@@ -28,19 +28,19 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-  // @import url('../../../style/varibles.styl')
+  @import '../../../style/varibles.styl'
   .header
     padding 0 20px
     background-image linear-gradient(90deg,#0af,#0085ff)
     .header-top
-      font-size 18Px
+      font-size $font-size18
       font-weight bolder
       height 90px
       display flex
       align-items flex-end
-      color #fff
+      color $colorA
       .current-pos
-        font-size 16Px
+        font-size $font-size18
         margin-right 14px
       .choose-pos
         margin-left 10px
@@ -55,12 +55,12 @@ export default {
         height 60px
         border 0
         outline 0
-        font-size 14Px
+        font-size $font-size14
         padding 0 20px
         box-sizing border-box
       .search-icon
         position absolute
         left 140px
-        font-size 20Px
+        font-size $font-size20
         bottom 10px
 </style>

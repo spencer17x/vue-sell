@@ -1,53 +1,49 @@
 <template>
   <div class="content">
-    <div class="list">
-      <div class="list-item">
-        <img src="https://fuss10.elemecdn.com/7/d8/a867c870b22bc74c87c348b75528djpeg.jpeg?imageMogr/format/webp/thumbnail/!90x90r/gravity/Center/crop/90x90/" alt="">
-        <div class="item-text">美食</div>
-      </div>
-      <div class="list-item">
-        <img src="https://fuss10.elemecdn.com/7/d8/a867c870b22bc74c87c348b75528djpeg.jpeg?imageMogr/format/webp/thumbnail/!90x90r/gravity/Center/crop/90x90/" alt="">
-        <div class="item-text">晚餐</div>
-      </div>
-      <div class="list-item">
-        <img src="https://fuss10.elemecdn.com/7/d8/a867c870b22bc74c87c348b75528djpeg.jpeg?imageMogr/format/webp/thumbnail/!90x90r/gravity/Center/crop/90x90/" alt="">
-        <div class="item-text">商超便利</div>
-      </div>
-      <div class="list-item">
-        <img src="https://fuss10.elemecdn.com/7/d8/a867c870b22bc74c87c348b75528djpeg.jpeg?imageMogr/format/webp/thumbnail/!90x90r/gravity/Center/crop/90x90/" alt="">
-        <div class="item-text">商超便利</div>
-      </div>
-      <div class="list-item">
-        <img src="https://fuss10.elemecdn.com/7/d8/a867c870b22bc74c87c348b75528djpeg.jpeg?imageMogr/format/webp/thumbnail/!90x90r/gravity/Center/crop/90x90/" alt="">
-        <div class="item-text">商超便利</div>
-      </div>
-      <div class="list-item">
-        <img src="https://fuss10.elemecdn.com/7/d8/a867c870b22bc74c87c348b75528djpeg.jpeg?imageMogr/format/webp/thumbnail/!90x90r/gravity/Center/crop/90x90/" alt="">
-        <div class="item-text">商超便利</div>
-      </div>
-      <div class="list-item">
-        <img src="https://fuss10.elemecdn.com/7/d8/a867c870b22bc74c87c348b75528djpeg.jpeg?imageMogr/format/webp/thumbnail/!90x90r/gravity/Center/crop/90x90/" alt="">
-        <div class="item-text">商超便利</div>
-      </div>
-      <div class="list-item">
-        <img src="https://fuss10.elemecdn.com/7/d8/a867c870b22bc74c87c348b75528djpeg.jpeg?imageMogr/format/webp/thumbnail/!90x90r/gravity/Center/crop/90x90/" alt="">
-        <div class="item-text">商超便利</div>
-      </div>
-      <div class="list-item">
-        <img src="https://fuss10.elemecdn.com/7/d8/a867c870b22bc74c87c348b75528djpeg.jpeg?imageMogr/format/webp/thumbnail/!90x90r/gravity/Center/crop/90x90/" alt="">
-        <div class="item-text">商超便利</div>
-      </div>
-      <div class="list-item">
-        <img src="https://fuss10.elemecdn.com/7/d8/a867c870b22bc74c87c348b75528djpeg.jpeg?imageMogr/format/webp/thumbnail/!90x90r/gravity/Center/crop/90x90/" alt="">
-        <div class="item-text">商超便利</div>
-      </div>
-    </div>
+    <swiper :options="swiperOption" v-if="lists.length">
+      <swiper-slide v-for="(list, index) of lists" :key="index">
+        <div class="list">
+          <div class="list-item" v-for="item of list" :key="item.id">
+            <img :src="item.imgUrl" alt="">
+            <div class="item-text">{{item.desc}}</div>
+          </div>
+        </div>
+      </swiper-slide>
+      <div class="swiper-pagination" slot="pagination"></div>
+    </swiper>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Content'
+  name: 'Content',
+  data () {
+    return {
+      lists: [],
+      swiperOption: { // 在swiper上面加个 v-if 判断，确保图片获取完成之后再渲染swiper组件
+        pagination: {
+          el: '.swiper-pagination'
+        },
+        loop: true,
+        // observer: true,
+        // observeParents: true,
+        // autoplay: true
+      }
+    }
+  },
+  created () {
+    this.axios.get('/api/list.json')
+      .then(res => {
+        if (res.status == 200) {
+          const list = res.data
+          let newList = []
+          for (let i = 0; i < Math.ceil(list.length/10); i++) {
+            newList.push(list.slice(i*10, 10*(i + 1)));
+          }
+          this.lists = newList
+        }
+      })
+  }
 }
 </script>
 
