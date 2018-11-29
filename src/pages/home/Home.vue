@@ -2,18 +2,26 @@
   <div>
     <Header></Header>
     <Content></Content>
-    <div>home</div>
+    <Banner></Banner>
+    <Recommend></Recommend>
+    <!-- <Menu></Menu> -->
   </div>
 </template>
 
 <script>
 import Header from "./components/Header"
 import Content from './components/Content'
+import Banner from "./components/Banner"
+import Recommend from "./components/Recommend"
+// import Menu from "../../common/Menu"
 export default {
   name: 'Home',
   components: {
     Header,
-    Content
+    Content,
+    Banner,
+    Recommend,
+    // Menu
   }
 }
 </script>

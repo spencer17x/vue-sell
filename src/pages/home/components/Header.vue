@@ -30,6 +30,9 @@ export default {
 <style lang="stylus" scoped>
   @import '../../../style/varibles.styl'
   .header
+    position sticky
+    top -90px
+    z-index 999
     padding 0 20px
     background-image linear-gradient(90deg,#0af,#0085ff)
     .header-top
@@ -37,18 +40,20 @@ export default {
       font-weight bolder
       height 90px
       display flex
-      align-items flex-end
+      align-items center
       color $colorA
+      padding-top 50px
+      box-sizing border-box
       .current-pos
         font-size $font-size18
         margin-right 14px
       .choose-pos
         margin-left 10px
     .search-wrap
+      position relative
       height 100px
       line-height 100px
       text-align center
-      position relative
       input
         text-align center
         width 100%
