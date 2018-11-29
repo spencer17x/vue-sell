@@ -1,22 +1,7 @@
 <template>
   <div>
+    <router-view></router-view>
     <div class="menu-wrap">
-      <!-- <router-link tag="div" class="menu-item active-menu" to="/">
-        <span class="iconfont">&#xe722;</span>
-        首页
-      </router-link>
-      <router-link tag="div" class="menu-item" to="/find">
-        <span class="iconfont">&#xe60c;</span>
-        发现
-      </router-link>
-      <router-link tag="div" class="menu-item" to="/order">
-        <span class="iconfont">&#xe637;</span>  
-        订单
-      </router-link>
-      <router-link tag="div" class="menu-item" to="/mine">
-        <span class="iconfont">&#xe627;</span>  
-        我的
-      </router-link> -->
       <router-link tag="div" 
         exact-active-class="active-menu"
         class="menu-item" 
