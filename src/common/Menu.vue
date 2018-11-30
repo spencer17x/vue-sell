@@ -51,6 +51,7 @@ export default {
     height 100px
     left 0
     right 0
+    background #fff
     align-items center
     justify-content center
     .menu-item
