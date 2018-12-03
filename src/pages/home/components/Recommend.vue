@@ -5,7 +5,7 @@
     </div>
     <div class="res-merchant-list">
       <div class="title-wrap">
-        <div class="list-title">
+        <div class="list-title" @click="handleClick">
           综合排序
           <span class="iconfont">&#xe63f;</span>
         </div>
@@ -43,6 +43,12 @@ export default {
       lists: []
     }
   },
+  methods: {
+    handleClick () {
+      console.log(this.$store.state.count)
+      this.$store.commit()
+    }
+  }
   // mounted () {
   //   this.axios.get('https://h5.ele.me/restapi/shopping/v3/restaurants?latitude=30.2752307&longitude=119.9711838&offset=24&limit=8&extras[]=activities&extras[]=tags&extra_filters=home&rank_id=4ddfb85e0fe74315958aa336ac8ead6a&terminal=h5')
   //     .then(res => {

@@ -3,8 +3,14 @@
     <CommonHeader :headerTitle="headerTitle"></CommonHeader>
     <div class="login">
       <img src="//fuss10.elemecdn.com/d/60/70008646170d1f654e926a2aaa3afpng.png" alt="" class="login-pic">
-      <p class="desc">登录后查看外卖订单</p>
-      <router-link tag="button" class="login-btn" to="/login">立即登录</router-link>
+      <div v-if="!isLogin">
+        <p class="desc">登录后查看外卖订单</p>
+        <router-link tag="button" class="login-btn" to="/login">立即登录</router-link>
+      </div>
+      <div v-else>
+        <p class="desc">已登录</p>
+        <button class="login-btn">已登录</button>
+      </div>
     </div>
   </div>
 </template>
@@ -18,7 +24,8 @@ export default {
   },
   data () {
     return {
-      headerTitle: '订单'
+      headerTitle: '订单',
+      isLogin: this.$store.state.isLogin
     }
   }
 }
