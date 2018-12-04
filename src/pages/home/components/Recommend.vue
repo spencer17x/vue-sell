@@ -5,7 +5,7 @@
     </div>
     <div class="res-merchant-list">
       <div class="title-wrap">
-        <div class="list-title" @click="handleClick">
+        <div class="list-title">
           综合排序
           <span class="iconfont">&#xe63f;</span>
         </div>
@@ -19,14 +19,14 @@
       <div class="restaurant-item" v-for="(item, index) of lists" :key="index">
         <div class="restaurant-item-top new-res">
           <div class="item-pic">
-            <img src="https://fuss10.elemecdn.com/e/f5/0a17a7cd8d400ff7e6a5006b344e0jpeg.jpeg?imageMogr/format/webp/thumbnail/!130x130r/gravity/Center/crop/130x130/" alt="">
+            <img :src="item.imgUrl" alt="">
           </div>
           <div class="item-content">
-            <p class="item-t">肯德基宅急送<span class="item-t-right" @click="handleToggleMask(index)">···</span></p>
-            <p class="order-num">月售352单</p>
+            <p class="item-t">{{item.title}}<span class="item-t-right" @click="handleToggleMask(index)">···</span></p>
+            <p class="order-num">{{item["sale-desc"]}}</p>
             <p class="price">
-              <span>￥0起送 配送费￥9</span>
-              <span class="right">1.55km | 30分钟</span>
+              <span>{{item["para-desc"]}}</span>
+              <span class="right">{{item["miles-time"]}}</span>
             </p>
           </div>
         </div>
@@ -43,15 +43,11 @@ export default {
   name: 'Recommend',
   data () {
     return {
-      lists: 8,
       currentIdx: -1
     }
   },
+  props: ['lists'],
   methods: {
-    handleClick () {
-      console.log(this.$store.state.count)
-      this.$store.commit()
-    },
     handleToggleMask (index) {
       this.currentIdx = index
     },
@@ -59,17 +55,10 @@ export default {
       this.currentIdx = -1
     },
     handleRemoveItem (index) {
-      this.lists--
+      this.lists.splice(index, 1)
       this.currentIdx = -1
     }
   }
-  // mounted () {
-  //   this.axios.get('https://h5.ele.me/restapi/shopping/v3/restaurants?latitude=30.2752307&longitude=119.9711838&offset=24&limit=8&extras[]=activities&extras[]=tags&extra_filters=home&rank_id=4ddfb85e0fe74315958aa336ac8ead6a&terminal=h5')
-  //     .then(res => {
-  //       const arr = res.data.items
-  //       this.lists = arr
-  //     })
-  // }
 }
 </script>
 
@@ -97,8 +86,9 @@ export default {
         content ''
         display inline-block
     .res-merchant-list
-      margin-bottom 120px
+      margin-bottom 140px
       .title-wrap
+        background #fff
         position sticky
         z-index 999
         top 100px
