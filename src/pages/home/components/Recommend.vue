@@ -16,19 +16,22 @@
           <span class="iconfont">&#xe645;</span>
         </div>
       </div>
-      <div class="restaurant-item">
+      <div class="restaurant-item" v-for="(item, index) of lists" :key="index">
         <div class="restaurant-item-top new-res">
           <div class="item-pic">
             <img src="https://fuss10.elemecdn.com/e/f5/0a17a7cd8d400ff7e6a5006b344e0jpeg.jpeg?imageMogr/format/webp/thumbnail/!130x130r/gravity/Center/crop/130x130/" alt="">
           </div>
           <div class="item-content">
-            <p class="item-t">肯德基宅急送</p>
+            <p class="item-t">肯德基宅急送<span class="item-t-right" @click="handleToggleMask(index)">···</span></p>
             <p class="order-num">月售352单</p>
             <p class="price">
               <span>￥0起送 配送费￥9</span>
               <span class="right">1.55km | 30分钟</span>
             </p>
           </div>
+        </div>
+        <div :class="['res-mask', {'show': currentIdx == index}]" @click="handleHideMask">
+          <div class="res-mask-txt" @click="handleRemoveItem(index)">不喜欢</div>
         </div>
       </div>
     </div>
@@ -40,13 +43,24 @@ export default {
   name: 'Recommend',
   data () {
     return {
-      lists: []
+      lists: 8,
+      currentIdx: -1
     }
   },
   methods: {
     handleClick () {
       console.log(this.$store.state.count)
       this.$store.commit()
+    },
+    handleToggleMask (index) {
+      this.currentIdx = index
+    },
+    handleHideMask () {
+      this.currentIdx = -1
+    },
+    handleRemoveItem (index) {
+      this.lists--
+      this.currentIdx = -1
     }
   }
   // mounted () {
@@ -96,7 +110,7 @@ export default {
           text-align center
       .restaurant-item
         padding 20px
-        margin-bottom 20px
+        position relative
         .restaurant-item-top
           display flex
           .item-pic
@@ -110,6 +124,10 @@ export default {
             .item-t
               line-height 24Px
               font-size 16Px
+              .item-t-right
+                float right
+                font-size 12Px
+                color #666
             .order-num
               line-height 28Px
             .price
@@ -118,6 +136,29 @@ export default {
                 position absolute
                 right 20px
                 color #999
+        .res-mask
+          display none 
+          position absolute
+          left 0
+          right 0
+          top 0
+          bottom 0
+          background rgba(0,0,0,.5)
+        .show
+          display block
+          .res-mask-txt
+            background #fff
+            position absolute
+            width 100px
+            height 100px
+            text-align center
+            line-height 100px
+            border-radius 50%
+            left 0
+            right 0 
+            bottom 0
+            top 0
+            margin auto
         .new-res
           &::after
             content ''
