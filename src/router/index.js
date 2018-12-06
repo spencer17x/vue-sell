@@ -16,15 +16,16 @@ export default new VueRouter({
       path: '/', 
       component: Menu,
       children: [
-        {path: '', component: Home},
-        {path: 'find', component: Find},
-        {path: 'order', component: Order},
-        {path: 'mine', component: Mine},
+        {path: '', component: Home, meta: {keepAlive: true}},
+        {path: 'find', component: Find, meta: {keepAlive: false}},
+        {path: 'order', component: Order, meta: {keepAlive: false}},
+        {path: 'mine', component: Mine, meta: {keepAlive: false}},
       ]
     },
     {
       path: '/login',
-      component: Login
+      component: Login,
+      meta: {keepAlive: false}
     }
   ]
 })

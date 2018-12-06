@@ -14,12 +14,14 @@ export default {
 
 <style lang="stylus" scoped>
   .common-header
+    position sticky
+    z-index 1
+    top 0
     height 90px
     line-height 90px
     text-align center
     background-image linear-gradient(90deg,#0af,#0085ff)
     color #fff 
-    position relative
     font-size 18Px
     font-weight bolder
     .iconfont
