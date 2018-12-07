@@ -10,7 +10,7 @@ import Menu from '../common/Menu.vue'
 
 Vue.use(VueRouter)
 
-export default new VueRouter({
+const router = new VueRouter({
   routes: [
     {
       path: '/', 
@@ -18,7 +18,7 @@ export default new VueRouter({
       children: [
         {path: '', component: Home, meta: {keepAlive: true}},
         {path: 'find', component: Find, meta: {keepAlive: false}},
-        {path: 'order', component: Order, meta: {keepAlive: false}},
+        {path: 'order', component: Order, meta: {keepAlive: true}},
         {path: 'mine', component: Mine, meta: {keepAlive: false}},
       ]
     },
@@ -29,3 +29,5 @@ export default new VueRouter({
     }
   ]
 })
+
+export default router;
