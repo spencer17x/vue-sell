@@ -45,7 +45,7 @@ export default {
       orderList: []
     }
   },
-  mounted () {
+  created () {
     if (this.isLogin) {
       this.getOrderList()
     }

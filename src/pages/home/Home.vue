@@ -32,7 +32,7 @@ export default {
     Recommend,
     // Menu
   },
-  mounted () {
+  created () {
     window.addEventListener('scroll', this.handleScroll)
     this.axios.get('/api/recommend.json')
       .then(res => {
