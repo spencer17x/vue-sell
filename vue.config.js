@@ -12,7 +12,5 @@ module.exports = {
           }
       }
   },
-  baseUrl: process.env.NODE_ENV === 'production'
-    ? '/vue-sell/dist/'
-    : '/'
+  baseUrl: './'
 }
