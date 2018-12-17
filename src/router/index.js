@@ -6,7 +6,8 @@ import Find from '../pages/find/Find'
 import Order from '../pages/order/Order'
 import Mine from '../pages/mine/Mine'
 import Login from '../pages/login/Login'
-import Menu from '../common/Menu.vue'
+import Shop from '../pages/shop/Shop'
+import Menu from '../common/Menu'
 
 Vue.use(VueRouter)
 
@@ -17,15 +18,18 @@ const router = new VueRouter({
       component: Menu,
       children: [
         {path: '', component: Home, meta: {keepAlive: true}},
-        {path: 'find', component: Find, meta: {keepAlive: false}},
-        {path: 'order', component: Order, meta: {keepAlive: true}},
-        {path: 'mine', component: Mine, meta: {keepAlive: false}},
+        {path: 'find', component: Find},
+        {path: 'order', component: Order},
+        {path: 'mine', component: Mine},
       ]
     },
     {
       path: '/login',
-      component: Login,
-      meta: {keepAlive: false}
+      component: Login
+    },
+    {
+      path: '/shop',
+      component: Shop
     }
   ]
 })

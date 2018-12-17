@@ -16,7 +16,7 @@
           <span class="iconfont">&#xe645;</span>
         </div>
       </div>
-      <div class="restaurant-item" v-for="(item, index) of lists" :key="index">
+      <router-link tag="div" to="/shop" class="restaurant-item" v-for="(item, index) of lists" :key="index">
         <div class="restaurant-item-top new-res">
           <div class="item-pic">
             <img :src="item.imgUrl" alt="">
@@ -33,7 +33,7 @@
         <div :class="['res-mask', {'show': currentIdx == index}]" @click="handleHideMask">
           <div class="res-mask-txt" @click="handleRemoveItem(index)">不喜欢</div>
         </div>
-      </div>
+      </router-link>
     </div>
   </div>
 </template>
