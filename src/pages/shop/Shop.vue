@@ -25,12 +25,17 @@
       </div>
       <div class="desc-announcement">公告：新鲜食材，优厨现烧，古槐里农家炒菜，等你</div>
     </div>
+    <shop-list></shop-list>
   </div>
 </template>
 
 <script>
+import ShopList from './components/ShopList'
 export default {
-  name: 'Shop'
+  name: 'Shop',
+  components: {
+    ShopList
+  }
 }
 </script>
 
